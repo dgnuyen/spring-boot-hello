@@ -16,7 +16,9 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("das1942/java-spring-hello:${TAG}")
+		   docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                    	docker.build("das1942/java-spring-hello:${TAG}")
+		   }
                 }
             }
         }
